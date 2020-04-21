@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Image slideer, slide show, lightbox</title>
+<style>
+	.ss-thumbnail-slider{
+		display: flex;
+		flex-direction: column;
+		position: relative;
+		width: 500px;
+		margin: 0 auto;
+	}
+	.column {
+		
+	}
+	.thumbnail-preview {
+		background-color: #e3e3e3;
+		width: 100%;
+		height: 300px;
+	}
+	.thumbnail-preview img {
+		width: 100%;
+	}
+
+	.thumbnail-wrap > ul.thumbnail-container {
+		display: flex;
+		flex-direction: row;
+		white-space: nowrap;
+		width: 100%;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		overflow: hidden;
+		transition: transform .4s ease-in;
+	}
+
+	.thumbnail-wrap > ul.thumbnail-container li.thumbnail-image-wrap {
+		flex: 0 0 125px;
+	    justify-content: center;
+	    align-items: center;
+	}
+
+	.thumbnail-wrap > ul.thumbnail-container li.thumbnail-image-wrap > img {
+		width: 100%;
+	}
+
+</style>
+</head>
+
+<body>
+	<div class="ss-thumbnail-slider">
+		<div class="column thumbnail-preview">
+			<img src="https://www.w3schools.com/howto/img_nature.jpg" id="preview-image" />
+		</div>
+		<div class="column thumbnail-wrap">
+			<ul class="thumbnail-container" id="thumbnail-container">
+				<li class="thumbnail-image-wrap">
+					<img src="https://www.w3schools.com/howto/img_nature.jpg" class="show-preview" />
+				</li>
+				<li class="thumbnail-image-wrap">
+					<img src="https://www.w3schools.com/howto/img_snow.jpg" class="show-preview" />
+				</li>
+				<li class="thumbnail-image-wrap">
+					<img src="https://www.w3schools.com/howto/img_mountains.jpg" class="show-preview" />
+				</li>
+				<li class="thumbnail-image-wrap">
+					<img src="https://www.w3schools.com/howto/img_lights.jpg" class="show-preview" />
+				</li>
+				<li class="thumbnail-image-wrap">
+					<img src="https://www.w3schools.com/howto/img_nature.jpg" class="show-preview" />
+				</li>
+				<li class="thumbnail-image-wrap">
+					<img src="https://www.w3schools.com/howto/img_snow.jpg" class="show-preview" />
+				</li>
+				<li class="thumbnail-image-wrap">
+					<img src="https://www.w3schools.com/howto/img_mountains.jpg" class="show-preview" />
+				</li>
+				<li class="thumbnail-image-wrap">
+					<img src="https://www.w3schools.com/howto/img_lights.jpg" class="show-preview" />
+				</li>
+				<li class="thumbnail-image-wrap">
+					<img src="https://www.w3schools.com/howto/img_nature.jpg" class="show-preview" />
+				</li>
+				<li class="thumbnail-image-wrap">
+					<img src="https://www.w3schools.com/howto/img_snow.jpg" class="show-preview" />
+				</li>
+				<li class="thumbnail-image-wrap">
+					<img src="https://www.w3schools.com/howto/img_mountains.jpg" class="show-preview" />
+				</li>
+				<li class="thumbnail-image-wrap">
+					<img src="https://www.w3schools.com/howto/img_lights.jpg" class="show-preview" />
+				</li>
+			</ul>
+			<button id="slideLeft" type="button">Slide left</button>
+    <button id="slideRight" type="button">Slide right</button>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		const previewImage = document.getElementById('preview-image');
+		const showPreview = document.querySelectorAll('.show-preview');
+		showPreview.forEach(el => el.addEventListener('click', event => {
+		  //console.log(event.target.src);
+		  let src = event.target.src;
+		  previewImage.src = src;
+		}));
+
+
+		const thumbnailContainer = document.getElementById('thumbnail-container');
+		const buttonRight = document.getElementById('slideRight');
+	    const buttonLeft = document.getElementById('slideLeft');
+		let translate = 0;
+	    
+	    buttonRight.onclick = function () {
+	      thumbnailContainer.scrollLeft += 125
+	    };
+	    buttonLeft.onclick = function () {
+	      thumbnailContainer.scrollLeft -= 125;
+	    };
+	</script>
+</body>
+
+</html>
