@@ -14,16 +14,66 @@
 	.column {
 		
 	}
-	.thumbnail-preview {
+	.ss-thumbnail-preview {
 		background-color: #e3e3e3;
 		width: 100%;
 		height: 300px;
 	}
-	.thumbnail-preview img {
+	.ss-thumbnail-preview img {
 		width: 100%;
 	}
 
-	.thumbnail-wrap > ul.thumbnail-container {
+	.ss-thumbnail-wrap {
+		position: relative;
+	}
+
+	.ss-thumbnail-wrap .ss-controller{
+	    display: flex;
+	    justify-content: space-between;
+	    width: 100%;
+	    top: 50%;
+	    transform: translateY(-50%);
+		position: absolute;
+	    z-index: 99;
+	}
+
+	.ss-thumbnail-wrap .ss-controller a{
+		background-color: rgba(255,255,255,0.3);
+		color: #000;
+		width: 30px;
+		height: 30px;
+		border-radius: 50%;
+		cursor: pointer;
+		position: relative;
+		margin-left: 10px;
+		margin-right: 10px;
+	}
+
+	.ss-thumbnail-wrap .ss-controller a::before{
+		position: absolute;
+		content: "";
+		display: block;
+		border: solid black;
+		border-width: 0 3px 3px 0;
+		display: inline-block;
+		padding: 3px;
+		height: 5px;
+		width: 5px;
+	}
+
+	.ss-thumbnail-wrap .ss-controller a#slideLeft::before{
+		transform: rotate(135deg);
+		top: 8px;
+		left: 10px;
+	}
+
+	.ss-thumbnail-wrap .ss-controller a#slideRight::before{
+		transform: rotate(-45deg);
+		top: 8px;
+    	right: 10px;	
+	}
+
+	.ss-thumbnail-wrap > ul.ss-thumbnail-container {
 		display: flex;
 		flex-direction: row;
 		white-space: nowrap;
@@ -32,16 +82,17 @@
 		margin: 0;
 		padding: 0;
 		overflow: hidden;
+		scroll-behavior: smooth;
 		transition: transform .4s ease-in;
 	}
 
-	.thumbnail-wrap > ul.thumbnail-container li.thumbnail-image-wrap {
+	.ss-thumbnail-wrap > ul.ss-thumbnail-container li.ss-thumbnail-image-wrap {
 		flex: 0 0 125px;
 	    justify-content: center;
 	    align-items: center;
 	}
 
-	.thumbnail-wrap > ul.thumbnail-container li.thumbnail-image-wrap > img {
+	.ss-thumbnail-wrap > ul.ss-thumbnail-container li.ss-thumbnail-image-wrap > img {
 		width: 100%;
 	}
 
@@ -50,50 +101,53 @@
 
 <body>
 	<div class="ss-thumbnail-slider">
-		<div class="column thumbnail-preview">
+		<div class="column ss-thumbnail-preview">
 			<img src="https://www.w3schools.com/howto/img_nature.jpg" id="preview-image" />
 		</div>
-		<div class="column thumbnail-wrap">
-			<ul class="thumbnail-container" id="thumbnail-container">
-				<li class="thumbnail-image-wrap">
+		<div class="column ss-thumbnail-wrap">
+			<div class="ss-controller">
+				<a id="slideLeft"></a>
+				<a id="slideRight"></a>
+			</div>
+			<ul class="ss-thumbnail-container" id="ss-thumbnail-container">
+				<li class="ss-thumbnail-image-wrap">
 					<img src="https://www.w3schools.com/howto/img_nature.jpg" class="show-preview" />
 				</li>
-				<li class="thumbnail-image-wrap">
+				<li class="ss-thumbnail-image-wrap">
 					<img src="https://www.w3schools.com/howto/img_snow.jpg" class="show-preview" />
 				</li>
-				<li class="thumbnail-image-wrap">
+				<li class="ss-thumbnail-image-wrap">
 					<img src="https://www.w3schools.com/howto/img_mountains.jpg" class="show-preview" />
 				</li>
-				<li class="thumbnail-image-wrap">
+				<li class="ss-thumbnail-image-wrap">
 					<img src="https://www.w3schools.com/howto/img_lights.jpg" class="show-preview" />
 				</li>
-				<li class="thumbnail-image-wrap">
+				<li class="ss-thumbnail-image-wrap">
 					<img src="https://www.w3schools.com/howto/img_nature.jpg" class="show-preview" />
 				</li>
-				<li class="thumbnail-image-wrap">
+				<li class="ss-thumbnail-image-wrap">
 					<img src="https://www.w3schools.com/howto/img_snow.jpg" class="show-preview" />
 				</li>
-				<li class="thumbnail-image-wrap">
+				<li class="ss-thumbnail-image-wrap">
 					<img src="https://www.w3schools.com/howto/img_mountains.jpg" class="show-preview" />
 				</li>
-				<li class="thumbnail-image-wrap">
+				<li class="ss-thumbnail-image-wrap">
 					<img src="https://www.w3schools.com/howto/img_lights.jpg" class="show-preview" />
 				</li>
-				<li class="thumbnail-image-wrap">
+				<li class="ss-thumbnail-image-wrap">
 					<img src="https://www.w3schools.com/howto/img_nature.jpg" class="show-preview" />
 				</li>
-				<li class="thumbnail-image-wrap">
+				<li class="ss-thumbnail-image-wrap">
 					<img src="https://www.w3schools.com/howto/img_snow.jpg" class="show-preview" />
 				</li>
-				<li class="thumbnail-image-wrap">
+				<li class="ss-thumbnail-image-wrap">
 					<img src="https://www.w3schools.com/howto/img_mountains.jpg" class="show-preview" />
 				</li>
-				<li class="thumbnail-image-wrap">
+				<li class="ss-thumbnail-image-wrap">
 					<img src="https://www.w3schools.com/howto/img_lights.jpg" class="show-preview" />
 				</li>
 			</ul>
-			<button id="slideLeft" type="button">Slide left</button>
-    <button id="slideRight" type="button">Slide right</button>
+			
 		</div>
 	</div>
 
@@ -107,7 +161,7 @@
 		}));
 
 
-		const thumbnailContainer = document.getElementById('thumbnail-container');
+		const thumbnailContainer = document.getElementById('ss-thumbnail-container');
 		const buttonRight = document.getElementById('slideRight');
 	    const buttonLeft = document.getElementById('slideLeft');
 		let translate = 0;
